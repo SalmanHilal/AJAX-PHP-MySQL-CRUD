@@ -193,10 +193,27 @@ $("#insertDataForm").get(0).reset();
         type: 'post',
         success: function(response,status){
         document.getElementById('alertmsg').innerHTML = response;
-            $('#alert').modal('show');
-            allUsers();
-
+        $('#alert').modal('show');
         }
      });
     }
+}
+function loginUser(){
+  var formData = new FormData($("#loginForm")[0]);
+$("#loginForm").get(0).reset();
+    $.ajax({
+        url:'crud.php',
+        dataType: 'text',
+        data: formData,
+        processData:false,   
+        contentType: false,                   
+        type: 'post',
+        success: function(response,status){
+        document.getElementById('alertmsg').innerHTML = response;
+            $('#alert').modal('show');
+        if(response == 'You are logged in!'){
+            location.reload();
+        }
+        }
+     });
 }

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +25,11 @@
     <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
 	</head>
 	<body>
-
+<?php
+if(isset($_SESSION['useremail'])){
+	include_once 'newsfeed.php';
+}else{
+?>
     <!-- Header
     ================================================= -->
 		<header id="header-inverse">
@@ -124,22 +131,24 @@
                   <p class="text-muted">Log into your account</p>
                   
                   <!--Login Form-->
-                  <form name="Login_form" id='Login_form'>
+                  <form name="loginForm" id='loginForm'>
                      <div class="row">
-                      <div class="form-group col-xs-12">
-                        <label for="my-email" class="sr-only">Email</label>
-                        <input id="my-email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Your Email"/>
-                      </div>
+					<div class="form-group">
+						<label><!-- <span>Email: </span> -->
+							<input type="email" name="logemail" id="email" placeholder="Email" class="form-control" required/>
+						</label>
+					</div>
                     </div>
                     <div class="row">
-                      <div class="form-group col-xs-12">
-                        <label for="my-password" class="sr-only">Password</label>
-                        <input id="my-password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Password"/>
-                      </div>
+						<div class="form-group">
+							<label><!-- <span>Password:</span>  -->
+								<input type="password" name="logpass" id="pass" placeholder="Password" class="form-control" required/>
+							</label>
+						</div>
                     </div>
                   </form><!--Login Form Ends--> 
                   <p><a href="#">Forgot Password?</a></p>
-                  <button class="btn btn-primary">Login Now</button>
+                  <button class="btn btn-primary" onclick="loginUser()">Login Now</button>
                 </div>
               </div>
             </div>
@@ -160,7 +169,7 @@
         </div>
       </div>
     </div>
-
+<?php } ?>
     <!--preloader-->
     <div id="spinner-wrapper">
       <div class="spinner"></div>

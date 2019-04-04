@@ -1,7 +1,22 @@
 <?php
 include_once 'connection.php';
-
+session_start();
 extract($_POST);
+// Login User
+if(isset($_POST['logemail']) && isset($_POST['logpass'])){
+  $uid = $_POST['logemail'];
+  $pwd = $_POST['logpass'];
+  $sql = "SELECT * FROM usersinfo WHERE email='$uid' AND pass='$pwd'";
+  $result = mysqli_query($conn, $sql);
+
+  if ($row = mysqli_fetch_assoc($result)) {
+    echo "You are logged in!";
+    $_SESSION["useremail"] = "$uid";
+  } else {
+    echo "Your username or password is incorrect!";
+  }
+
+}
 // Save User
 if(isset($_POST['userName']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['pass'])) {
 $target_dir = "uploads/";
