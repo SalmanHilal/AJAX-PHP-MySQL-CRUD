@@ -1,223 +1,186 @@
-<!DOCTYPE html><html><head><title>AJAX CRUD Operations</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="assets/bootstrap.min.css"><script src="assets/jquery.min.js"></script><script src="assets/bootstrap.min.js"></script><style>label{width:95%}#insertDataForm .form-control{display:inline-block;width:85%}#insertDataForm label span{width:14%;display:inline-block}.btnc{margin-left:13.5%}input[type=file]{display:inline-block}#myfile{
-    margin-left:7%}.img{text-align:center;max-width:70px}.img img{height:max-content;max-height:70px}</style></head><body>
-<div class="container"><div class="container-fluid">
-	<h2 class="text-center text-primary">AJAX CRUD Operations</h2>
-	<form id="insertDataForm" class="table-bordered" style="padding:15px" enctype="multipart/form-data">
-		<h3>Add New User</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="This is social network html5 template available in themeforest......" />
+		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
+		<meta name="robots" content="index, follow" />
+		<title>getogether</title>
+
+    <!-- Stylesheets
+    ================================================= -->
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/ionicons.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/style.css">
+    <!--Google Font-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
+    
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
+	</head>
+	<body>
+
+    <!-- Header
+    ================================================= -->
+		<header id="header-inverse">
+      <nav class="navbar navbar-default navbar-fixed-top menu">
+        <div class="container">
+
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index-register.html"><img src="images/logo.png" alt="logo" /></a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right main-menu">
+
+            </ul>
+            <form class="navbar-form navbar-right hidden-sm">
+              <div class="form-group">
+                <i class="icon ion-android-search"></i>
+                <input type="text" class="form-control" placeholder="Search friends, photos, videos">
+              </div>
+            </form>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+      </nav>
+    </header>
+    <!--Header End-->
+    
+    <!-- Landing Page Contents
+    ================================================= -->
+    <div id="lp-register">
+    	<div class="container wrapper">
+        <div class="row">
+        	<div class="col-sm-5">
+            <div class="intro-texts">
+            	<h1 class="text-white">Make Cool Friends !!!</h1>
+            	<p>Friend Finder is a social network template that can be used to connect people. The template offers Landing pages, News Feed, Image/Video Feed, Chat Box, Timeline and lot more. <br /> <br />Why are you waiting for? Buy it now.</p>
+              <button class="btn btn-primary">Learn More</button>
+            </div>
+          </div>
+        	<div class="col-sm-6 col-sm-offset-1">
+            <div class="reg-form-container"> 
+            
+              <!-- Register/Login Tabs-->
+              <div class="reg-options">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#register" data-toggle="tab">Register</a></li>
+                  <li><a href="#login" data-toggle="tab">Login</a></li>
+                </ul><!--Tabs End-->
+              </div>
+              
+              <!--Registration Form Contents-->
+              <div class="tab-content">
+                <div class="tab-pane active" id="register">
+                  <h3>Register Now !!!</h3>
+                  <p class="text-muted">Be cool and join today. Meet millions</p>
+                  
+                  <!--Register Form-->
+	<form id="insertDataForm" class=""  enctype="multipart/form-data">
 		<div class="form-group">
-			<label><span>User Name:</span> 
+			<label><!-- <span>User Name:</span> --> 
 				<input type="text" name="userName" id="userName" placeholder="User Name" class="form-control" required/>
 			</label>
 		</div>
 		<div class="form-group">
-			<label><span>Email: </span>
+			<label><!-- <span>Email: </span> -->
 				<input type="email" name="email" id="email" placeholder="Email" class="form-control" required/>
 			</label>
 		</div>
 		<div class="form-group">
-			<label><span>Phone: </span>
+			<label><!-- <span>Phone: </span> -->
 				<input type="text" name="phone" id="phone" placeholder="Phone" class="form-control" required/>
 			</label>
 		</div>
 		<div class="form-group">
-			<label><span>Password:</span> 
+			<label><!-- <span>Password:</span>  -->
 				<input type="password" name="pass" id="pass" placeholder="Password" class="form-control" required/>
 			</label>
 		</div>
 		<div class="form-group">
-			<label>Profile Pic:
+			<label><!-- Profile Pic: -->
 				<input type="file" name="myfile" id="myfile" class="form-control">
 			</label>
 		</div>
-		 <input type="button" class="btn btn-primary btnc" onclick="insertData()" value="Add User"/>
-	</form>
-</div></div>
-<div class="container">
-<h3>All Users</h3>
-	<div id="allUsers">
-	</div>	
-</div>
-<div id="myModal" class="modal fade" role="dialog">
+		 <input type="button" class="btn btn-primary btnc" onclick="insertData()" value="Register Now"/>
+	</form><!--Register Now Form Ends-->
+                  <p><a href="#">Already have an account?</a></p>
+                </div><!--Registration Form Contents Ends-->
+                
+                <!--Login-->
+                <div class="tab-pane" id="login">
+                  <h3>Login</h3>
+                  <p class="text-muted">Log into your account</p>
+                  
+                  <!--Login Form-->
+                  <form name="Login_form" id='Login_form'>
+                     <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="my-email" class="sr-only">Email</label>
+                        <input id="my-email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Your Email"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="my-password" class="sr-only">Password</label>
+                        <input id="my-password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Password"/>
+                      </div>
+                    </div>
+                  </form><!--Login Form Ends--> 
+                  <p><a href="#">Forgot Password?</a></p>
+                  <button class="btn btn-primary">Login Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-6">
+          
+            <!--Social Icons-->
+            <ul class="list-inline social-icons">
+              <li><a href="#"><i class="icon ion-social-facebook"></i></a></li>
+              <li><a href="#"><i class="icon ion-social-twitter"></i></a></li>
+              <li><a href="#"><i class="icon ion-social-googleplus"></i></a></li>
+              <li><a href="#"><i class="icon ion-social-pinterest"></i></a></li>
+              <li><a href="#"><i class="icon ion-social-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--preloader-->
+    <div id="spinner-wrapper">
+      <div class="spinner"></div>
+    </div>
+    <div id="alert" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-    	<form id="updateDataForm"  enctype="multipart/form-data">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit User Details</h4>
+      <div class="modal-body" id="alertmsg">
       </div>
-      <div class="modal-body">    	
-      	<div class="text-center">
-      	      	<img src="" id="pp" height="110px">	
-      	</div>
-		<div class="form-group">
-			<label>User Name: 
-				<input type="text" name="upuserName" id="up_userName" placeholder="User Name" class="form-control">
-			</label>
-		</div>
-		<div class="form-group">
-			<label>Email: 
-				<input type="email" name="upemail" id="up_email" placeholder="Email" class="form-control">
-			</label>
-		</div>
-		<div class="form-group">
-			<label>Phone: 
-				<input type="text" name="upphone" id="up_phone" placeholder="Phone" class="form-control">
-			</label>
-		</div>
-		<div class="form-group">
-			<label>Password: 
-				<input type="text" name="uppassword" id="up_password" placeholder="Password" class="form-control">
-			</label>
-		</div>
-		<div class="form-group">
-			<label>Change Image:
-				<input type="file" name="myfile" id="up_myfile" class="form-control">
-				        <input type="hidden" name="hiddenID" id="hiddenID" value="">
-			</label>
-		</div>
-      </div>
-      <div class="modal-footer">
-      	<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="updateUser()">Update</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-  </form>
     </div>
 
   </div>
 </div>
-<script>
-function updateUser(){
-  var upformData = new FormData($("#updateDataForm")[0]);
-for (var pair of upformData.entries()) {
-    console.log(pair[0]+ ', ' + pair[1]); 
-}
-    $.ajax({
-        url:'crud.php',
-        dataType: 'text',
-        data: upformData,
-        processData:false,   
-        contentType: false,                   
-        type: 'post',
-        success: function(response,status){
-            allUsers();
-            alert(response);
-        }
-     });
-}
-/*function updateUser(){
-	var userName = $('#up_userName').val();
-	var email = $('#up_email').val();
-	var phone = $('#up_phone').val();
-	var pass = $('#up_password').val();
-	var hiddenID = $('#hiddenID').val();
-	$.post('crud.php',{
-		hiddenID:hiddenID,
-		userName:userName,
-		email:email,
-		phone:phone,
-		pass:pass
-	}, function(response,status){
-		$('#myModal').modal('hide');
-		allUsers();
-	});
-}*/
-function editUser(uid){
-	 $('#hiddenID').attr('value',uid);
-	$.post('crud.php',{ uid:uid }, function(response,status){
-		var user = JSON.parse(response);
-		$('#up_userName').val(user.userName);
-		$('#up_email').val(user.email);
-		$('#up_phone').val(user.phone);
-		$('#up_password').val(user.pass);
-		$("#pp").attr("src", user.imgpath);
-	});
-	$('#myModal').modal('show');	
-}
-function deleteUser(deleteid){
-	var confrm = confirm("Are you sure?");
-	var userID = deleteid;
-	if(confrm == true){
-		$.ajax({
-			url:'crud.php',
-			type:'POST',
-			data:{userID:userID},
-		success:function(response,status){
-			allUsers();
-		}
-		});
-	}
-}
-allUsers();
-function allUsers(){
-	var allUsers="allUsers";
-	$.ajax({
-		url:'crud.php',
-		type:'POST',
-		data:{allUsers:allUsers},
-		success:function(response,status){
-			$('#allUsers').html(response);
-		}
-	});
-}
-function insertData(){
-	var userName = $('#userName').val();
-	var email = $('#email').val();
-	var phone = $('#phone').val();
-	var pass = $('#pass').val();
-var file = document.getElementById('myfile').files[0];
- if(file){
- 	if(file.size < 2097152) {
-   } else {
-     alert("File is  over 2Mb in size!");
-     evt.preventDefault();
-   }
- }    
-	if(![userName,email,phone,pass].every(Boolean)){
-		alert('All fields are required to submit.')
-	}else{
-  var formData = new FormData($("#insertDataForm")[0]);
-    $.ajax({
-        url:'crud.php',
-        dataType: 'text',
-        data: formData,
-        processData:false,   
-        contentType: false,                   
-        type: 'post',
-        success: function(response,status){
-            alert(response);
-            allUsers();
-        }
-     });
-	}
-}
-/*function insertData(){
-	//var myfile = $("#myfile").prop("files")[0];
-	var userName = $('#userName').val();
-	var email = $('#email').val();
-	var phone = $('#phone').val();
-	var password = $('#password').val();
-	var addUser = "addUser";
-	if(![userName,email,phone,password].every(Boolean)){
-		alert('All fields are required to submit.')
-	}else{
-	$.ajax({
-		url:'crud.php',
-		type:'POST',
-		data:{
-			//myfile:myfile,
-			userName:userName,
-			email:email,
-			phone:phone,
-			pass:password,
-			addUser:addUser
-		},
-		success:function(response,status){
-			alert(response);
-			allUsers();
-		}
-	});
-}
-}*/
-</script>
-</body>
+
+    <!-- Scripts
+    ================================================= -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.appear.min.js"></script>
+		<script src="js/jquery.incremental-counter.js"></script>
+    <script src="js/script.js"></script>
+	</body>
 </html>
