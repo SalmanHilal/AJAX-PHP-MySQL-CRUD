@@ -210,10 +210,28 @@ $("#loginForm").get(0).reset();
         type: 'post',
         success: function(response,status){
         document.getElementById('alertmsg').innerHTML = response;
-            $('#alert').modal('show');
+        $('#alert').modal('show');
         if(response == 'You are logged in!'){
             location.reload();
         }
         }
      });
+}
+function checkuserName(){
+    var checkuserName = $('#userName').val();
+    console.log(1);
+if(checkuserName.length > 3){
+$('#ferrors').html('User Name must be atleast 3 characters!');
+$('#ferrors').removeClass('hidden');
+}else{
+        $.ajax({
+            url:'crud.php',
+            type:'POST',
+            data:{checkuserName:checkuserName},
+        success:function(response,status){
+        document.getElementById('ferrors').innerHTML = response;
+        $('#ferrors').removeClass('hidden');
+        }
+        });
+}
 }

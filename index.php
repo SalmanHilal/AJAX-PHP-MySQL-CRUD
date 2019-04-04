@@ -97,7 +97,7 @@ if(isset($_SESSION['useremail'])){
 	<form id="insertDataForm" class=""  enctype="multipart/form-data">
 		<div class="form-group">
 			<label><!-- <span>User Name:</span> --> 
-				<input type="text" name="userName" id="userName" placeholder="User Name" class="form-control" required/>
+				<input type="text" name="userName" id="userName" placeholder="User Name" class="form-control" onchange="checkuserName()" required/>
 			</label>
 		</div>
 		<div class="form-group">
@@ -123,6 +123,8 @@ if(isset($_SESSION['useremail'])){
 		 <input type="button" class="btn btn-primary btnc" onclick="insertData()" value="Register Now"/>
 	</form><!--Register Now Form Ends-->
                   <p><a href="#">Already have an account?</a></p>
+                  <div class="panel hidden" id="ferrors"></div>
+                  <div class="panel hidden" id="cerrors"></div>
                 </div><!--Registration Form Contents Ends-->
                 
                 <!--Login-->
@@ -169,7 +171,7 @@ if(isset($_SESSION['useremail'])){
         </div>
       </div>
     </div>
-<?php } ?>
+<?php  	} ?>
     <!--preloader-->
     <div id="spinner-wrapper">
       <div class="spinner"></div>

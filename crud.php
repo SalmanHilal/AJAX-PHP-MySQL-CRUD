@@ -2,6 +2,14 @@
 include_once 'connection.php';
 session_start();
 extract($_POST);
+// Check Username
+if(isset($_POST['checkuserName'])){
+//$checkuser = mysqli_real_escape_string($conn,$checkuserName);
+$sql ="SELECT userName FROM usersinfo WHERE userName='$checkuserName'";
+$result = mysqli_query($conn, $sql);
+print_r($result);
+}
+
 // Login User
 if(isset($_POST['logemail']) && isset($_POST['logpass'])){
   $uid = $_POST['logemail'];

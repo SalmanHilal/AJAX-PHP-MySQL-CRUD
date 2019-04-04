@@ -95,7 +95,7 @@ echo $_SESSION['useremail'];
     			<div class="col-md-3" style="position:static;">
             <div class="profile-card">
             	<img src="images/users/user-1.jpg" alt="user" class="profile-photo" />
-            	<h5><a href="timeline.html" class="text-white">Sarah Cruiz</a></h5>
+            	<h5><a href="timeline.html" class="text-white">Micheal Cruiz</a></h5>
             	<a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
               <a href="logout.php" class="text-white"><i class="ion ion-android-person-add"></i> Logout</a>
             </div><!--profile card ends-->
