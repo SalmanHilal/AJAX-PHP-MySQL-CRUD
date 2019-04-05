@@ -49,14 +49,16 @@ if(isset($_POST['logemail']) && isset($_POST['logpass'])){
     echo "You are logged in!";
     $_SESSION["useremail"] = "$uid";
   } else {
-    echo "Your username or password is incorrect!";
+    echo "Username or password is incorrect!";
   }
 
 }
 // Save User
 if(isset($_POST['userName']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['pass'])) {
 $target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["myfile"]["name"]);
+$imageName = $_POST['userName']."-".basename($_FILES['myfile']['name'],PATHINFO_EXTENSION);
+$target_file = $target_dir . $imageName;
+
 if(isset($_SESSION["vuserName"]) && isset($_SESSION["vEmail"]) && isset($_SESSION["vPhone"])){
 	if (file_exists($target_file) && @is_array(getimagesize($target_file))) {
 	    echo "Sorry, file already exists.";

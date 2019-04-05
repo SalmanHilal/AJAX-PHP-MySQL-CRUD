@@ -116,7 +116,7 @@ if(isset($_SESSION['useremail'])){
 			</label>
 		</div>
 		<div class="form-group">
-			<label><!-- Profile Pic: -->
+			<label>Profile Picture:
 				<input type="file" name="myfile" id="myfile" class="form-control">
 			</label>
 		</div>
