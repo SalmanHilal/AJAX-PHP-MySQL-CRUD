@@ -44,7 +44,7 @@ if(isset($_SESSION['useremail'])){
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index-register.html"><img src="images/logo.png" alt="logo" /></a>
+            <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="logo" /></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -102,17 +102,17 @@ if(isset($_SESSION['useremail'])){
 		</div>
 		<div class="form-group">
 			<label><!-- <span>Email: </span> -->
-				<input type="email" name="email" id="email" placeholder="Email" class="form-control" required/>
+				<input type="email" name="email" id="email" placeholder="Email" class="form-control" onchange="checkemail()" required/>
 			</label>
 		</div>
 		<div class="form-group">
 			<label><!-- <span>Phone: </span> -->
-				<input type="text" name="phone" id="phone" placeholder="Phone" class="form-control" required/>
+				<input type="text" name="phone" id="phone" placeholder="Phone" class="form-control" onchange="checkphone()" required/>
 			</label>
 		</div>
 		<div class="form-group">
 			<label><!-- <span>Password:</span>  -->
-				<input type="password" name="pass" id="pass" placeholder="Password" class="form-control" required/>
+				<input type="password" name="pass" id="pass" placeholder="Password" class="form-control" onchange="checkpass()" required/>
 			</label>
 		</div>
 		<div class="form-group">
@@ -123,8 +123,7 @@ if(isset($_SESSION['useremail'])){
 		 <input type="button" class="btn btn-primary btnc" onclick="insertData()" value="Register Now"/>
 	</form><!--Register Now Form Ends-->
                   <p><a href="#">Already have an account?</a></p>
-                  <div class="panel hidden" id="ferrors"></div>
-                  <div class="panel hidden" id="cerrors"></div>
+                  <div class="panel hidden col-xs-12" id="ferrors"></div>
                 </div><!--Registration Form Contents Ends-->
                 
                 <!--Login-->
@@ -151,6 +150,7 @@ if(isset($_SESSION['useremail'])){
                   </form><!--Login Form Ends--> 
                   <p><a href="#">Forgot Password?</a></p>
                   <button class="btn btn-primary" onclick="loginUser()">Login Now</button>
+                  <div class="panel hidden col-xs-12" id="cerrors" style="margin-top:15px"></div>
                 </div>
               </div>
             </div>

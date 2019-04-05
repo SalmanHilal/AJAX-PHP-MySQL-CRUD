@@ -184,6 +184,10 @@ var file = document.getElementById('myfile').files[0];
     }else{
   var formData = new FormData($("#insertDataForm")[0]);
 $("#insertDataForm").get(0).reset();
+    $('#userName').css("border-color", "#ddd");
+    $('#email').css("border-color", "#ddd");
+    $('#phone').css("border-color", "#ddd");
+    $('#pass').css("border-color", "#ddd");
     $.ajax({
         url:'crud.php',
         dataType: 'text',
@@ -199,7 +203,9 @@ $("#insertDataForm").get(0).reset();
     }
 }
 function loginUser(){
-  var formData = new FormData($("#loginForm")[0]);
+    $('#cerrors').addClass('hidden');
+    $('#cerrors').css("border-color", "#fff");
+    var formData = new FormData($("#loginForm")[0]);
 $("#loginForm").get(0).reset();
     $.ajax({
         url:'crud.php',
@@ -209,29 +215,119 @@ $("#loginForm").get(0).reset();
         contentType: false,                   
         type: 'post',
         success: function(response,status){
-        document.getElementById('alertmsg').innerHTML = response;
-        $('#alert').modal('show');
+        document.getElementById('cerrors').innerHTML = response;
+        $('#cerrors').removeClass('hidden');
+        $('#cerrors').css({'border-color' : 'red','color' : 'red'});
         if(response == 'You are logged in!'){
+        $('#cerrors').css({'border-color' : 'green','color' : 'green'});
             location.reload();
         }
         }
      });
 }
 function checkuserName(){
+    $('#ferrors').addClass('hidden');
     var checkuserName = $('#userName').val();
-    console.log(1);
-if(checkuserName.length > 3){
-$('#ferrors').html('User Name must be atleast 3 characters!');
-$('#ferrors').removeClass('hidden');
-}else{
+    if(checkuserName.length >= 3){
         $.ajax({
             url:'crud.php',
             type:'POST',
             data:{checkuserName:checkuserName},
         success:function(response,status){
+        if(response == "Username available."){
+            $('#userName').css("border-color", "green");
+        }else{
         document.getElementById('ferrors').innerHTML = response;
         $('#ferrors').removeClass('hidden');
+        $('#ferrors').css({'border-color' : 'red','color' : 'red'});
+        $('#userName').css("border-color", "red");
+        }
         }
         });
+    }else{
+        $('#ferrors').html('User Name must be atleast 3 characters!');
+        $('#ferrors').removeClass('hidden');
+        $('#userName').css("border-color", "red");
+    }
 }
+function validateEmail() {
+   var email =  $('#email').val();
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+function checkemail(){
+    $('#ferrors').addClass('hidden');
+    var checkemail= $('#email').val();
+    if(validateEmail()){
+        $.ajax({
+            url:'crud.php',
+            type:'POST',
+            data:{checkemail:checkemail},
+        success:function(response,status){
+        if(response == "Email available."){
+            $('#email').css("border-color", "green");
+        }else{
+        document.getElementById('ferrors').innerHTML = response;
+        $('#ferrors').removeClass('hidden');
+        $('#ferrors').css({'border-color' : 'red','color' : 'red'});
+        $('#email').css("border-color", "red");
+        }
+        }
+        });
+    }else{
+        $('#ferrors').html('Invalid Email!');
+        $('#ferrors').removeClass('hidden');
+        $('#email').css("border-color", "red");
+    }
+}
+function validatephone() {
+  var phone =  $('#phone').val();
+  var re = /^[+]?(1\-|1\s|1|\d{3}\-|\d{3}\s|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/g;
+  return re.test(phone);
+}
+function onlynumbers(){
+  var phone =  $('#phone').val();
+  return /^\d*$/.test(phone);
+}
+function checkphone(){
+    $('#ferrors').addClass('hidden');
+    var checkphone= $('#phone').val();
+    if(onlynumbers() && checkphone.length > 9){
+        $.ajax({
+            url:'crud.php',
+            type:'POST',
+            data:{checkphone:checkphone},
+        success:function(response,status){
+        if(response == "Phone available."){
+            $('#phone').css("border-color", "green");
+        }else{
+        document.getElementById('ferrors').innerHTML = response;
+        $('#ferrors').removeClass('hidden');
+        $('#ferrors').css({'border-color' : 'red','color' : 'red'});
+        $('#phone').css("border-color", "red");
+        }
+        }
+        });
+    }else{
+        $('#ferrors').html('Invalid phone number! Phone must be atleast 10 digits.');
+        $('#ferrors').removeClass('hidden');
+        $('#phone').css("border-color", "red");
+    }
+}
+function validatePassword() {
+    var pw = $('#pass').val();
+    return /[A-Z]/       .test(pw) &&
+           /[a-z]/       .test(pw) &&
+           /[0-9]/       .test(pw) &&
+           /[^A-Za-z0-9]/.test(pw) &&
+           pw.length > 3;
+}
+function checkpass(){
+    if(validatePassword()){
+    $('#pass').css("border-color", "green");
+    }else{
+        $('#ferrors').html('Password must be contain  atleast one uppercase,<br> one lowercase letter, one digit, one special symbol.');
+        $('#ferrors').removeClass('hidden');
+        $('#pass').css("border-color", "red");   
+    }
 }

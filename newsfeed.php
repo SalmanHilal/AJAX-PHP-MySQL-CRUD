@@ -1,5 +1,20 @@
 <?php
-echo $_SESSION['useremail'];
+$uemail = $_SESSION['useremail'];
+include_once 'connection.php';
+$q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
+    if (!$result = mysqli_query($conn,$q)) {
+        exit(mysqli_error());
+    }
+    $response = array();
+    if(mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) { 
+          $response = $row; 
+           $userName = $response['userName'];
+           $email = $response['email'];
+           $phone = $response['phone'];
+           $imgpath = $response['imgpath'];
+         }
+    }
 ?>
 		<header id="header">
       <nav class="navbar navbar-default navbar-fixed-top menu">
@@ -94,9 +109,9 @@ echo $_SESSION['useremail'];
           ================================================= -->
     			<div class="col-md-3" style="position:static;">
             <div class="profile-card">
-            	<img src="images/users/user-1.jpg" alt="user" class="profile-photo" />
-            	<h5><a href="timeline.html" class="text-white">Micheal Cruiz</a></h5>
-            	<a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
+            	<img src="<?php echo $imgpath; ?>" alt="user" class="profile-photo" />
+            	<h5><a href="timeline.html" class="text-white"><?php echo $userName; ?></a></h5>
+            	<!-- <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a> -->
               <a href="logout.php" class="text-white"><i class="ion ion-android-person-add"></i> Logout</a>
             </div><!--profile card ends-->
             <ul class="nav-news-feed">
@@ -130,7 +145,7 @@ echo $_SESSION['useremail'];
             	<div class="row">
             		<div class="col-md-7 col-sm-7">
                   <div class="form-group">
-                    <img src="images/users/user-1.jpg" alt="" class="profile-photo-md" />
+                    <img src="<?php echo $imgpath; ?>" alt="" class="profile-photo-md" />
                     <textarea name="texts" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
                   </div>
                 </div>
@@ -147,7 +162,39 @@ echo $_SESSION['useremail'];
                 </div>
             	</div>
             </div><!-- Post Create Box End -->
-
+              <div class="post-content">
+              <img src="images/post-images/2.jpg" alt="post-image" class="img-responsive post-image">
+              <div class="post-container">
+                <img src="images/users/user-4.jpg" alt="user" class="profile-photo-md pull-left">
+                <div class="post-detail">
+                  <div class="user-info">
+                    <h5><a href="timeline.html" class="profile-link">John Doe</a> <span class="following">following</span></h5>
+                    <p class="text-muted">Published a photo about 2 hour ago</p>
+                  </div>
+                  <div class="reaction">
+                    <a class="btn text-green"><i class="icon ion-thumbsup"></i> 39</a>
+                    <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 2</a>
+                  </div>
+                  <div class="line-divider"></div>
+                  <div class="post-text">
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt</p>
+                  </div>
+                  <div class="line-divider"></div>
+                  <div class="post-comment">
+                    <img src="images/users/user-13.jpg" alt="" class="profile-photo-sm">
+                    <p><a href="timeline.html" class="profile-link">Brian </a>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
+                  </div>
+                  <div class="post-comment">
+                    <img src="images/users/user-8.jpg" alt="" class="profile-photo-sm">
+                    <p><a href="timeline.html" class="profile-link">Richard</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                  </div>
+                  <div class="post-comment">
+                    <img src="images/users/user-1.jpg" alt="" class="profile-photo-sm">
+                    <input type="text" class="form-control" placeholder="Post a comment">
+                  </div>
+                </div>
+              </div>
+            </div>
             <!-- Friend List
             ================================================= -->
             <div class="friend-list">

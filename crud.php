@@ -4,12 +4,40 @@ session_start();
 extract($_POST);
 // Check Username
 if(isset($_POST['checkuserName'])){
-//$checkuser = mysqli_real_escape_string($conn,$checkuserName);
-$sql ="SELECT userName FROM usersinfo WHERE userName='$checkuserName'";
-$result = mysqli_query($conn, $sql);
-print_r($result);
+	unset($_SESSION["vuserName"]);
+	$username = mysqli_real_escape_string($conn,$_POST['checkuserName']);
+		if (!empty($username)){
+		$username_query = mysqli_query($conn,"SELECT * FROM usersinfo WHERE userName ='$username'");
+	    $count=mysqli_num_rows( $username_query);
+	    if($count==0) { echo "Username available."; 
+	    $_SESSION["vuserName"] = "ok"; exit;
+	    }else{ echo "Username already exists!"; exit;}
+    }
 }
-
+// Check Email
+if(isset($_POST['checkemail'])){
+	unset($_SESSION["vEmail"]);
+	$email = mysqli_real_escape_string($conn,$_POST['checkemail']);
+		if (!empty($email)){
+		$email_query = mysqli_query($conn,"SELECT * FROM usersinfo WHERE email ='$email'");
+	    $count=mysqli_num_rows( $email_query);
+	    if($count==0) { echo "Email available."; 
+	    $_SESSION["vEmail"] = "ok"; exit;
+	    }else{ echo "Email already exists!"; exit;}
+    }
+}
+// Check Phone
+if(isset($_POST['checkphone'])){
+	unset($_SESSION["vPhone"]);
+	$phone = mysqli_real_escape_string($conn,$_POST['checkphone']);
+		if (!empty($phone)){
+		$q = mysqli_query($conn,"SELECT * FROM usersinfo WHERE phone ='$phone'");
+	    $count=mysqli_num_rows($q);
+	    if($count==0) { echo "Phone available."; 
+	    $_SESSION["vPhone"] = "ok"; exit;
+	    }else{ echo "Phone already exists!"; exit;}
+    }
+}
 // Login User
 if(isset($_POST['logemail']) && isset($_POST['logpass'])){
   $uid = $_POST['logemail'];
@@ -29,6 +57,7 @@ if(isset($_POST['logemail']) && isset($_POST['logpass'])){
 if(isset($_POST['userName']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['pass'])) {
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["myfile"]["name"]);
+if(isset($_SESSION["vuserName"]) && isset($_SESSION["vEmail"]) && isset($_SESSION["vPhone"])){
 	if (file_exists($target_file) && @is_array(getimagesize($target_file))) {
 	    echo "Sorry, file already exists.";
 	}else{
@@ -44,6 +73,8 @@ $target_file = $target_dir . basename($_FILES["myfile"]["name"]);
 		}
 		 mysqli_close($conn);
 	}
+}else{echo "One of the above fields is empty or invalid! Please check again.";}
+
 }
 // All Users
 if(isset($_POST['allUsers'])){
