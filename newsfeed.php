@@ -15,6 +15,12 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
            $imgpath = $response['imgpath'];
          }
     }
+$qonline = "SELECT * FROM usersinfo WHERE isonline = 'true' AND email!='$uemail'";
+    if (!$resultonline = mysqli_query($conn,$qonline)) {
+        exit(mysqli_error());
+    }
+    $responseonline = array();
+
 ?>
 		<header id="header">
       <nav class="navbar navbar-default navbar-fixed-top menu">
@@ -28,7 +34,7 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index-register.html"><img src="images/logo.png" alt="logo" /></a>
+            <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="logo" /></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -110,7 +116,7 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
     			<div class="col-md-3" style="position:static;">
             <div class="profile-card">
             	<img src="<?php echo $imgpath; ?>" alt="user" class="profile-photo" />
-            	<h5><a href="timeline.html" class="text-white"><?php echo $userName; ?></a></h5>
+            	<h5><a href="me.php" class="text-white"><?php echo $userName; ?></a></h5>
             	<!-- <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a> -->
               <a href="logout.php" class="text-white"><i class="ion ion-android-person-add"></i> Logout</a>
             </div><!--profile card ends-->
@@ -125,15 +131,13 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
             <div id="chat-block">
               <div class="title">Chat online</div>
               <ul class="online-users list-inline">
-                <li><a href="newsfeed-messages.html" title="Linda Lohan"><img src="images/users/user-2.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="Sophia Lee"><img src="images/users/user-3.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="John Doe"><img src="images/users/user-4.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="Alexis Clark"><img src="images/users/user-5.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="James Carter"><img src="images/users/user-6.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="Robert Cook"><img src="images/users/user-7.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="Richard Bell"><img src="images/users/user-8.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="Anna Young"><img src="images/users/user-9.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="Julia Cox"><img src="images/users/user-10.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
+    <?php if(mysqli_num_rows($resultonline) > 0) {
+        while ($row = mysqli_fetch_assoc($resultonline)) { 
+            $onlineuserName = $row['userName'];
+           $onlineimgpath = $row['imgpath'];
+          echo  '<li><a href="#" title="'.$onlineuserName.'"><img src="'.$onlineimgpath.'" alt="'.$onlineuserName.'" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>';
+         }
+    } ?>
               </ul>
             </div><!--chat block ends-->
           </div>

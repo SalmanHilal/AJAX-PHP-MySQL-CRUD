@@ -1,8 +1,26 @@
+<?php
+session_start();
+$uemail = $_SESSION['useremail'];
+include_once 'connection.php';
+$q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
+    if (!$result = mysqli_query($conn,$q)) {
+        exit(mysqli_error());
+    }
+    $response = array();
+    if(mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) { 
+          $response = $row; 
+           $userName = $response['userName'];
+           $email = $response['email'];
+           $phone = $response['phone'];
+           $imgpath = $response['imgpath'];
+         }
+    } ?>
 <html lang="en"><head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>My Profile</title>
+    <title><?php echo $userName; ?> - My Profile</title>
 
     <!-- Stylesheets
     ================================================= -->
@@ -34,16 +52,16 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index-register.html"><img src="images/logo.png" alt="logo"></a>
+            <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="logo"></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right main-menu">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span><img src="images/down-arrow.png" alt=""></span></a>
+                <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span><img src="images/down-arrow.png" alt=""></span></a>
                   <ul class="dropdown-menu newsfeed-home">
-                    <li><a href="index.html">Landing Page 1</a></li>
+                    <li><a href="index.php">Landing Page 1</a></li>
                     <li><a href="index-register.html">Landing Page 2</a></li>
                   </ul>
               </li>
@@ -75,7 +93,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">All Pages <span><img src="images/down-arrow.png" alt=""></span></a>
                 <ul class="dropdown-menu page-list">
-                  <li><a href="index.html">Landing Page 1</a></li>
+                  <li><a href="index.php">Landing Page 1</a></li>
                   <li><a href="index-register.html">Landing Page 2</a></li>
                   <li><a href="newsfeed.html">Newsfeed</a></li>
                   <li><a href="newsfeed-people-nearby.html">Poeple Nearly</a></li>
@@ -119,9 +137,9 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="profile-info">
-                  <img src="images/users/user-1.jpg" alt="" class="img-responsive profile-photo">
-                  <h3>Sarah Cruiz</h3>
-                  <p class="text-muted">Creative Director</p>
+                  <img src="<?php echo $imgpath; ?>" alt="" class="img-responsive profile-photo">
+                  <h3><?php echo $userName; ?></h3>
+                  <p class="text-muted"><?php echo $email; ?></p>
                 </div>
               </div>
               <div class="col-md-9">
@@ -142,9 +160,9 @@
           <!--Timeline Menu for Small Screens-->
           <div class="navbar-mobile hidden-lg hidden-md">
             <div class="profile-info">
-              <img src="images/users/user-1.jpg" alt="" class="img-responsive profile-photo">
-              <h4>Sarah Cruiz</h4>
-              <p class="text-muted">Creative Director</p>
+              <img src="<?php echo $imgpath; ?>" alt="" class="img-responsive profile-photo">
+              <h4><?php echo $userName; ?></h4>
+              <p class="text-muted"><?php echo $email; ?></p>
             </div>
             <div class="mobile-menu">
               <ul class="list-inline">
@@ -169,7 +187,7 @@
                 <div class="row">
                   <div class="col-md-7 col-sm-7">
                     <div class="form-group">
-                      <img src="images/users/user-1.jpg" alt="" class="profile-photo-md">
+                      <img src="<?php echo $imgpath; ?>" alt="" class="profile-photo-md">
                       <textarea name="texts" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
                     </div>
                   </div>
@@ -193,16 +211,16 @@
 
                 <!--Post Date-->
                 <div class="post-date hidden-xs hidden-sm">
-                  <h5>Sarah</h5>
+                  <h5><?php echo $userName; ?></h5>
                   <p class="text-grey">Sometimes ago</p>
                 </div><!--Post Date End-->
 
                 <img src="images/post-images/12.jpg" alt="post-image" class="img-responsive post-image">
                 <div class="post-container">
-                  <img src="images/users/user-1.jpg" alt="user" class="profile-photo-md pull-left">
+                  <img src="<?php echo $imgpath; ?>" alt="user" class="profile-photo-md pull-left">
                   <div class="post-detail">
                     <div class="user-info">
-                      <h5><a href="timeline.html" class="profile-link">Sarah Cruiz</a> <span class="following">following</span></h5>
+                      <h5><a href="timeline.html" class="profile-link"><?php echo $userName; ?></a> <span class="following">following</span></h5>
                       <p class="text-muted">Published a photo about 15 mins ago</p>
                     </div>
                     <div class="reaction">
@@ -223,7 +241,7 @@
                       <p><a href="timeline.html" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
                     </div>
                     <div class="post-comment">
-                      <img src="images/users/user-1.jpg" alt="" class="profile-photo-sm">
+                      <img src="<?php echo $imgpath; ?>" alt="" class="profile-photo-sm">
                       <input type="text" class="form-control" placeholder="Post a comment">
                     </div>
                   </div>
@@ -236,16 +254,16 @@
 
                 <!--Post Date-->
                 <div class="post-date hidden-xs hidden-sm">
-                  <h5>Sarah</h5>
+                  <h5><?php echo $userName; ?></h5>
                   <p class="text-grey">10/22/2016</p>
                 </div><!--Post Date End-->
 
                 <img src="images/post-images/13.jpg" alt="post-image" class="img-responsive post-image">
                 <div class="post-container">
-                  <img src="images/users/user-1.jpg" alt="user" class="profile-photo-md pull-left">
+                  <img src="<?php echo $imgpath; ?>" alt="user" class="profile-photo-md pull-left">
                   <div class="post-detail">
                     <div class="user-info">
-                      <h5><a href="timeline.html" class="profile-link">Sarah Cruiz</a> <span class="following">following</span></h5>
+                      <h5><a href="timeline.html" class="profile-link"><?php echo $userName; ?></a> <span class="following">following</span></h5>
                       <p class="text-muted">Yesterday</p>
                     </div>
                     <div class="reaction">
@@ -266,7 +284,7 @@
                       <p><a href="timeline.html" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
                     </div>
                     <div class="post-comment">
-                      <img src="images/users/user-1.jpg" alt="" class="profile-photo-sm">
+                      <img src="<?php echo $imgpath; ?>" alt="" class="profile-photo-sm">
                       <input type="text" class="form-control" placeholder="Post a comment">
                     </div>
                   </div>
@@ -279,15 +297,15 @@
 
                 <!--Post Date-->
                 <div class="post-date hidden-xs hidden-sm">
-                  <h5>Sarah</h5>
+                  <h5><?php echo $userName; ?></h5>
                   <p class="text-grey">10/21/2016</p>
                 </div><!--Post Date End-->
 
                 <div class="post-container">
-                  <img src="images/users/user-1.jpg" alt="user" class="profile-photo-md pull-left">
+                  <img src="<?php echo $imgpath; ?>" alt="user" class="profile-photo-md pull-left">
                   <div class="post-detail">
                     <div class="user-info">
-                      <h5><a href="timeline.html" class="profile-link">Sarah Cruiz</a> <span class="following">following</span></h5>
+                      <h5><a href="timeline.html" class="profile-link"><?php echo $userName; ?></a> <span class="following">following</span></h5>
                       <p class="text-muted">2 days ago</p>
                     </div>
                     <div class="reaction">
@@ -308,7 +326,7 @@
                       <p><a href="timeline.html" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
                     </div>
                     <div class="post-comment">
-                      <img src="images/users/user-1.jpg" alt="" class="profile-photo-sm">
+                      <img src="<?php echo $imgpath; ?>" alt="" class="profile-photo-sm">
                       <input type="text" class="form-control" placeholder="Post a comment">
                     </div>
                   </div>
@@ -318,28 +336,28 @@
             </div>
             <div class="col-md-2 static">
               <div id="sticky-sidebar">
-                <h4 class="grey">Sarah's activity</h4>
+                <h4 class="grey"><?php echo $userName; ?>'s activity</h4>
                 <div class="feed-item">
                   <div class="live-activity">
-                    <p><a href="#" class="profile-link">Sarah</a> Commended on a Photo</p>
+                    <p><a href="#" class="profile-link"><?php echo $userName; ?></a> Commended on a Photo</p>
                     <p class="text-muted">5 mins ago</p>
                   </div>
                 </div>
                 <div class="feed-item">
                   <div class="live-activity">
-                    <p><a href="#" class="profile-link">Sarah</a> Has posted a photo</p>
+                    <p><a href="#" class="profile-link"><?php echo $userName; ?></a> Has posted a photo</p>
                     <p class="text-muted">an hour ago</p>
                   </div>
                 </div>
                 <div class="feed-item">
                   <div class="live-activity">
-                    <p><a href="#" class="profile-link">Sarah</a> Liked her friend's post</p>
+                    <p><a href="#" class="profile-link"><?php echo $userName; ?></a> Liked her friend's post</p>
                     <p class="text-muted">4 hours ago</p>
                   </div>
                 </div>
                 <div class="feed-item">
                   <div class="live-activity">
-                    <p><a href="#" class="profile-link">Sarah</a> has shared an album</p>
+                    <p><a href="#" class="profile-link"><?php echo $userName; ?></a> has shared an album</p>
                     <p class="text-muted">a day ago</p>
                   </div>
                 </div>

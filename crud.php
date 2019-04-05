@@ -40,11 +40,13 @@ if(isset($_POST['checkphone'])){
 }
 // Login User
 if(isset($_POST['logemail']) && isset($_POST['logpass'])){
-  $uid = $_POST['logemail'];
-  $pwd = $_POST['logpass'];
+  $uid = mysqli_real_escape_string($conn,$_POST['logemail']);
+  $pwd = mysqli_real_escape_string($conn,$_POST['logpass']);
+  	
   $sql = "SELECT * FROM usersinfo WHERE email='$uid' AND pass='$pwd'";
   $result = mysqli_query($conn, $sql);
-
+	$q = "UPDATE `usersinfo` SET `isonline`='true' WHERE email='$uid'";
+	mysqli_query($conn,$q);
   if ($row = mysqli_fetch_assoc($result)) {
     echo "You are logged in!";
     $_SESSION["useremail"] = "$uid";
