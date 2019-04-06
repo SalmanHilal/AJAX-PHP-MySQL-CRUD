@@ -415,6 +415,12 @@ document.getElementById("prof").readOnly=true;
         $('#prof').css("border", "1px solid #ddd");
         document.getElementById("prof").readOnly=false;
     });
+document.getElementById("pInfo").readOnly=true;
+    $('#pInfo').click(function(){
+        $('#pinfoBtn').fadeIn();
+        $('#pInfo').css("border", "1px solid #ddd");
+        document.getElementById("pInfo").readOnly=false;
+    });
 });
 function updateprof(){
     var profession = $('#prof').val();
@@ -426,6 +432,20 @@ function updateprof(){
             $('#prof').html(response);
         $('#profBtn').fadeOut();
         $('#prof').css("border", "none");
+        }
+    });
+}
+function updatepInfo(){
+    var pInfo = $('#pInfo').val();
+        $.ajax({
+        url:'crud.php',
+        type:'POST',
+        data:{pInfo:pInfo},
+        success:function(response,status){
+            $('#pInfo').html(response);
+        $('#pinfoBtn').fadeOut();
+        $('#pInfo').css("border", "none");
+        console.log(response);
         }
     });
 }

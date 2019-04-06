@@ -12,6 +12,16 @@ if(isset($_POST['profession'])){
 	    echo "Enter your profession here.";
 	}
 }
+// Update Personal Information
+if(isset($_POST['pInfo'])){
+	$uemail = $_SESSION['useremail'];
+	$q = "UPDATE `usersinfo` SET `personelinfo`='$pInfo' WHERE email='$uemail'";
+	if (mysqli_query($conn, $q)) {
+	    echo $pInfo;
+	} else {
+	    echo "Enter your personal information here.";
+	}
+}
 // Change User Cover
 if(isset($_FILES["mycover"])){
 $uemail = $_SESSION['useremail'];

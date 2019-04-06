@@ -16,6 +16,7 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
            $imgpath = $response['imgpath'];
            $coverPic = $response['coverPic'];
            $profession = $response['profession'];
+           $pInfo = $response['personelinfo'];
          }
     } ?>
 <html lang="en"><head>
@@ -159,7 +160,8 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
                   <?php if($profession == ""){
                     $profession ="Enter your profession here.";
                   } ?>
-                  <p class="text-muted"><form>
+                  <p class="text-muted">
+                    <form>
                     <input type="text"  name="profession" id="prof" value="<?php echo $profession; ?>">
                   </form><button class="btn btn-primary" id="profBtn" onclick="updateprof()">Update</button></p>
                 </div>
@@ -395,7 +397,11 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
               <div class="about-profile">
                 <div class="about-content-block">
                   <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>Personal Information</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur</p>
+                  <p>                    <form>
+                    <textarea name="pInfo" id="pInfo" value="<?php echo $pInfo; ?>">
+                      
+                    </textarea> 
+                  </form><button class="btn btn-primary" id="pinfoBtn" onclick="updatepInfo()">Update</button></p>
                 </div>
                 <div class="about-content-block">
                   <h4 class="grey"><i class="ion-ios-briefcase-outline icon-in-title"></i>Work Experiences</h4>

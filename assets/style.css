@@ -17,4 +17,6 @@ input[type=file]{display:inline-block}
 .profile-info:hover #changeimgForm{visibility:visible}
 .about_content{display:none}
 #prof{width:100%;text-align:center;border:none;outline:none;}
+#pInfo{width:100%;border:none;outline:none;}
 #profBtn{display:none;outline:none;}
+#pinfoBtn{display:none;outline:none;}
