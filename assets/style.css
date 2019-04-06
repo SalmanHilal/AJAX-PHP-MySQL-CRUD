@@ -7,3 +7,11 @@ html {
 input[type=file]{display:inline-block}
 .img{text-align:center;max-width:70px}.img img{height:max-content;max-height:70px}
 #ferrors,#cerrors{color:#000}
+#myimg{opacity:0;margin-top:-44px;height:40px;width:100%;cursor:pointer;}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;color:#fff;background:url('../images/change_img.png');background-size:100% 100%;}
+form#changeimgForm{margin-top:-59px;visibility:hidden}
+.profile-info:hover #changeimgForm{visibility:visible}

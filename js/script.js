@@ -331,3 +331,38 @@ function checkpass(){
         $('#pass').css("border-color", "red");   
     }
 }
+isOnline();
+setInterval(function(){ 
+    isOnline();
+}, 5000);
+function isOnline(){
+    var isOnline="isOnline";
+    $.ajax({
+        url:'crud.php',
+        type:'POST',
+        data:{isOnline:isOnline},
+        success:function(response,status){
+            $('ul.online-users.list-inline').html(response);
+        }
+    });
+}
+$(document).ready(function(){
+    $('#myimg').change(function(){
+    var changeimgForm = new FormData($("#changeimgForm")[0]);
+    $("#changeimgForm").get(0).reset();
+
+    $.ajax({
+        url:'crud.php',
+        dataType: 'text',
+        data: changeimgForm,
+        processData:false,   
+        contentType: false,                   
+        type: 'post',
+        success: function(response,status){
+        if(response == "Profile pic updated!"){
+            location.reload();
+        }
+        }
+     });
+    });
+});

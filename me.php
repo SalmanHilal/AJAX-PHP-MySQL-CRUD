@@ -29,12 +29,13 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
     <link rel="stylesheet" href="css/ionicons.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link href="css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
     
     <!--Google Font-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
     
     <!--Favicon-->
-    <link rel="shortcut icon" type="image/png" href="images/fav.png">
+    <link rel="shortcut icon" type="image/png" href="<?php echo $imgpath; ?>">
   </head>
   <body>
 
@@ -138,6 +139,12 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
               <div class="col-md-3">
                 <div class="profile-info">
                   <img src="<?php echo $imgpath; ?>" alt="" class="img-responsive profile-photo">
+                  <form id="changeimgForm" enctype="multipart/form-data">
+                    <label for="file-upload" class="custom-file-upload">
+                        <i class="fa fa-image"></i> Change Profile
+                    </label>
+                    <input type="file" name="myimg" id="myimg">
+                  </form>
                   <h3><?php echo $userName; ?></h3>
                   <p class="text-muted"><?php echo $email; ?></p>
                 </div>

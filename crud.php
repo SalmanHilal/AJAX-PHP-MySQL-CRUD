@@ -2,6 +2,46 @@
 include_once 'connection.php';
 session_start();
 extract($_POST);
+// Change User Img
+if(isset($_FILES["myimg"])){
+$uemail = $_SESSION['useremail'];
+$username = substr($uemail, 0, strpos($uemail, '@'));
+$randomNO = rand(10,100);
+$target_dir = "uploads/";
+$imageName = $username."-".$randomNO."-".basename($_FILES['myimg']['name'],PATHINFO_EXTENSION);
+$target_file = $target_dir . $imageName;
+$basename = basename($_FILES["myimg"]["name"]);
+$ifimage = ""; 
+	if(@exif_imagetype($basename)){ $ifimage = "false";}else{ $ifimage = "true";}	
+	if($ifimage == "true"){
+		if(file_exists($target_file)){
+			echo "File already exits, Please try with different file.";
+		}elseif(move_uploaded_file($_FILES["myimg"]["tmp_name"], $target_file)){
+		$q = "UPDATE `usersinfo` SET `imgpath`='$target_file' WHERE email='$uemail'";
+		mysqli_query($conn,$q);
+		echo "Profile pic updated!";
+	    }else
+	    { echo "Sorry, there was an error uploading your file.";}
+	} else {
+		echo "Sorry, there was an error uploading your file.";
+	}	
+}
+// isOnline
+if(isset($_POST['isOnline'])){
+$uemail = $_SESSION['useremail'];
+$qonline = "SELECT * FROM usersinfo WHERE isonline = 'true' AND email!='$uemail'";
+    if (!$resultonline = mysqli_query($conn,$qonline)) {
+        exit(mysqli_error());
+    }
+    $responseonline = array();
+ if(mysqli_num_rows($resultonline) > 0) {
+        while ($row = mysqli_fetch_assoc($resultonline)) { 
+            $onlineuserName = $row['userName'];
+           $onlineimgpath = $row['imgpath'];
+          echo  '<li><a href="#" title="'.$onlineuserName.'"><img src="'.$onlineimgpath.'" alt="'.$onlineuserName.'" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>';
+         }
+    }
+}
 // Check Username
 if(isset($_POST['checkuserName'])){
 	unset($_SESSION["vuserName"]);

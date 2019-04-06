@@ -15,11 +15,7 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
            $imgpath = $response['imgpath'];
          }
     }
-$qonline = "SELECT * FROM usersinfo WHERE isonline = 'true' AND email!='$uemail'";
-    if (!$resultonline = mysqli_query($conn,$qonline)) {
-        exit(mysqli_error());
-    }
-    $responseonline = array();
+
 
 ?>
 		<header id="header">
@@ -131,13 +127,7 @@ $qonline = "SELECT * FROM usersinfo WHERE isonline = 'true' AND email!='$uemail'
             <div id="chat-block">
               <div class="title">Chat online</div>
               <ul class="online-users list-inline">
-    <?php if(mysqli_num_rows($resultonline) > 0) {
-        while ($row = mysqli_fetch_assoc($resultonline)) { 
-            $onlineuserName = $row['userName'];
-           $onlineimgpath = $row['imgpath'];
-          echo  '<li><a href="#" title="'.$onlineuserName.'"><img src="'.$onlineimgpath.'" alt="'.$onlineuserName.'" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>';
-         }
-    } ?>
+   
               </ul>
             </div><!--chat block ends-->
           </div>
