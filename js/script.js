@@ -350,7 +350,6 @@ $(document).ready(function(){
     $('#myimg').change(function(){
     var changeimgForm = new FormData($("#changeimgForm")[0]);
     $("#changeimgForm").get(0).reset();
-
     $.ajax({
         url:'crud.php',
         dataType: 'text',
@@ -360,6 +359,25 @@ $(document).ready(function(){
         type: 'post',
         success: function(response,status){
         if(response == "Profile pic updated!"){
+            location.reload();
+        }
+        }
+     });
+    });
+});
+$(document).ready(function(){
+    $('#mycover').change(function(){
+    var changecoverForm = new FormData($("#changecoverForm")[0]);
+    $("#changecoverForm").get(0).reset();
+    $.ajax({
+        url:'crud.php',
+        dataType: 'text',
+        data: changecoverForm,
+        processData:false,   
+        contentType: false,                   
+        type: 'post',
+        success: function(response,status){
+        if(response == "Cover pic updated!"){
             location.reload();
         }
         }

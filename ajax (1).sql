@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2019 at 04:43 PM
+-- Generation Time: Apr 06, 2019 at 01:18 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -140,17 +140,21 @@ CREATE TABLE `usersinfo` (
   `phone` varchar(50) DEFAULT NULL,
   `pass` varchar(50) DEFAULT NULL,
   `img` blob,
-  `imgpath` varchar(255) DEFAULT NULL
+  `imgpath` varchar(255) DEFAULT NULL,
+  `isonline` varchar(30) DEFAULT NULL,
+  `coverPic` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usersinfo`
 --
 
-INSERT INTO `usersinfo` (`id`, `userName`, `email`, `phone`, `pass`, `img`, `imgpath`) VALUES
-(139, 'John', 'john.tim@gmail.com', '13333555555', 'abc123', NULL, 'uploads/1.png'),
-(140, 'Colin', 'colin@gmail.com', '9876543211', 'abc123', NULL, 'uploads/5.png'),
-(141, 'James', 'james@gmail.com', '456789123', 'abc123', NULL, 'uploads/4.png');
+INSERT INTO `usersinfo` (`id`, `userName`, `email`, `phone`, `pass`, `img`, `imgpath`, `isonline`, `coverPic`) VALUES
+(139, 'John', 'john.tim@gmail.com', '13333555555', 'abc123', NULL, 'uploads/john.tim-22-1.png', 'true', 'uploads/john.tim-36-scissor-04.png'),
+(140, 'Colin', 'colin@gmail.com', '9876543211', 'abc123', NULL, 'uploads/5.png', 'false', NULL),
+(141, 'James', 'james@gmail.com', '456789123', 'abc123', NULL, 'uploads/4.png', NULL, NULL),
+(156, 'Saami', 'saamiibrahim@gmail.com', '1234567891', 'Saami1@', NULL, 'uploads/Saami-U896.jpg', 'true', NULL),
+(157, 'KeepOnline', 'keep@online.com', '12346654644554', 'aA1@', NULL, 'uploads/KeepOnline-download.png', 'true', NULL);
 
 --
 -- Indexes for dumped tables
@@ -218,7 +222,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `usersinfo`
 --
 ALTER TABLE `usersinfo`
-  MODIFY `id` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
+  MODIFY `id` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

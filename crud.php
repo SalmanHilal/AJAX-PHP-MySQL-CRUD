@@ -2,6 +2,30 @@
 include_once 'connection.php';
 session_start();
 extract($_POST);
+// Change User Cover
+if(isset($_FILES["mycover"])){
+$uemail = $_SESSION['useremail'];
+$username = substr($uemail, 0, strpos($uemail, '@'));
+$randomNO = rand(10,100);
+$target_dir = "uploads/";
+$imageName = $username."-".$randomNO."-".basename($_FILES['mycover']['name'],PATHINFO_EXTENSION);
+$target_file = $target_dir . $imageName;
+$basename = basename($_FILES["mycover"]["name"]);
+$ifimage = ""; 
+	if(@exif_imagetype($basename)){ $ifimage = "false";}else{ $ifimage = "true";}	
+	if($ifimage == "true"){
+		if(file_exists($target_file)){
+			echo "File already exits, Please try with different file.";
+		}elseif(move_uploaded_file($_FILES["mycover"]["tmp_name"], $target_file)){
+		$q = "UPDATE `usersinfo` SET `coverPic`='$target_file' WHERE email='$uemail'";
+		mysqli_query($conn,$q);
+		echo "Cover pic updated!";
+	    }else
+	    { echo "Sorry, there was an error uploading your file.";}
+	} else {
+		echo "Sorry, there was an error uploading your file.";
+	}	
+}
 // Change User Img
 if(isset($_FILES["myimg"])){
 $uemail = $_SESSION['useremail'];

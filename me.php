@@ -14,6 +14,7 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
            $email = $response['email'];
            $phone = $response['phone'];
            $imgpath = $response['imgpath'];
+           $coverPic = $response['coverPic'];
          }
     } ?>
 <html lang="en"><head>
@@ -131,8 +132,16 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
       <!-- Timeline
       ================================================= -->
       <div class="timeline">
-        <div class="timeline-cover">
-
+        <?php if($coverPic == ""){
+          $coverPic = "images/covers/1.jpg";
+        } ?>
+        <div class="timeline-cover" style="background-repeat:no-repeat;background:url('<?php echo $coverPic ?>');">
+          <form id="changecoverForm" enctype="multipart/form-data">
+            <label for="file-upload" class="custom-file-upload">
+             <i class="fa fa-image"></i> Change Cover
+            </label>
+            <input type="file" name="mycover" id="mycover">
+          </form>
           <!--Timeline Menu for Large Screens-->
           <div class="timeline-nav-bar hidden-sm hidden-xs">
             <div class="row">
