@@ -15,3 +15,6 @@ input[type=file]{display:inline-block}
     cursor: pointer;color:#fff;background:url('../images/change_img.png');background-size:100% 100%;}
 #changeimgForm{margin-top:-59px;visibility:hidden}
 .profile-info:hover #changeimgForm{visibility:visible}
+.about_content{display:none}
+#prof{width:100%;text-align:center;border:none;outline:none;}
+#profBtn{display:none;outline:none;}

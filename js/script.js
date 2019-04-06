@@ -384,3 +384,48 @@ $(document).ready(function(){
      });
     });
 });
+$(document).ready(function(){
+$('.timeline-link').click(function(){
+    $('.about_content').hide();
+    $('.friends_content').hide();
+    $('.timeline_content').fadeIn();
+    $('.timeline-link').addClass('active');
+    $('.about-link').removeClass('active');
+    $('.friends-link').removeClass('active');
+});
+$('.about-link').click(function(){
+    $('.timeline_content').hide();
+    $('.friends_content').hide();
+    $('.about_content').fadeIn();
+    $('.about-link').addClass('active');
+    $('.timeline-link').removeClass('active');
+    $('.friends-link').removeClass('active');
+});
+$('.friends-link').click(function(){
+    $('.about_content').hide();
+    $('.timeline_content').hide();
+    $('.friends_content').fadeIn();
+    $('.friends-link').addClass('active');
+    $('.about-link').removeClass('active');
+    $('.timeline-link').removeClass('active');
+});
+document.getElementById("prof").readOnly=true;
+    $('#prof').click(function(){
+        $('#profBtn').fadeIn();
+        $('#prof').css("border", "1px solid #ddd");
+        document.getElementById("prof").readOnly=false;
+    });
+});
+function updateprof(){
+    var profession = $('#prof').val();
+        $.ajax({
+        url:'crud.php',
+        type:'POST',
+        data:{profession:profession},
+        success:function(response,status){
+            $('#prof').html(response);
+        $('#profBtn').fadeOut();
+        $('#prof').css("border", "none");
+        }
+    });
+}

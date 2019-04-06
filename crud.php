@@ -2,13 +2,23 @@
 include_once 'connection.php';
 session_start();
 extract($_POST);
+// Update Profession
+if(isset($_POST['profession'])){
+	$uemail = $_SESSION['useremail'];
+	$q = "UPDATE `usersinfo` SET `profession`='$profession' WHERE email='$uemail'";
+	if (mysqli_query($conn, $q)) {
+	    echo $profession;
+	} else {
+	    echo "Enter your profession here.";
+	}
+}
 // Change User Cover
 if(isset($_FILES["mycover"])){
 $uemail = $_SESSION['useremail'];
 $username = substr($uemail, 0, strpos($uemail, '@'));
 $randomNO = rand(10,100);
 $target_dir = "uploads/";
-$imageName = $username."-".$randomNO."-".basename($_FILES['mycover']['name'],PATHINFO_EXTENSION);
+$imageName = $username."-cover-".$randomNO."-".basename($_FILES['mycover']['name'],PATHINFO_EXTENSION);
 $target_file = $target_dir . $imageName;
 $basename = basename($_FILES["mycover"]["name"]);
 $ifimage = ""; 
@@ -30,7 +40,7 @@ $ifimage = "";
 if(isset($_FILES["myimg"])){
 $uemail = $_SESSION['useremail'];
 $username = substr($uemail, 0, strpos($uemail, '@'));
-$randomNO = rand(10,100);
+$randomNO = rand(10,999);
 $target_dir = "uploads/";
 $imageName = $username."-".$randomNO."-".basename($_FILES['myimg']['name'],PATHINFO_EXTENSION);
 $target_file = $target_dir . $imageName;
