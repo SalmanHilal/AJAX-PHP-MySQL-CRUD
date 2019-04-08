@@ -436,7 +436,7 @@ function updateprof(){
     });
 }
 function updatepInfo(){
-    var pInfo = $('#pInfo').val();
+    var pInfo = $('#pInfo').html();
         $.ajax({
         url:'crud.php',
         type:'POST',
@@ -445,7 +445,6 @@ function updatepInfo(){
             $('#pInfo').html(response);
         $('#pinfoBtn').fadeOut();
         $('#pInfo').css("border", "none");
-        console.log(response);
         }
     });
 }

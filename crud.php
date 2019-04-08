@@ -15,9 +15,10 @@ if(isset($_POST['profession'])){
 // Update Personal Information
 if(isset($_POST['pInfo'])){
 	$uemail = $_SESSION['useremail'];
-	$q = "UPDATE `usersinfo` SET `personelinfo`='$pInfo' WHERE email='$uemail'";
+	$pInfovalue = mysqli_real_escape_string($conn,$_POST['pInfo']);
+	$q = "UPDATE `usersinfo` SET `personelinfo`='$pInfovalue' WHERE email='$uemail'";
 	if (mysqli_query($conn, $q)) {
-	    echo $pInfo;
+	    echo $pInfovalue;
 	} else {
 	    echo "Enter your personal information here.";
 	}

@@ -398,9 +398,7 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
                 <div class="about-content-block">
                   <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>Personal Information</h4>
                   <p>                    <form>
-                    <textarea name="pInfo" id="pInfo" value="<?php echo $pInfo; ?>">
-                      
-                    </textarea> 
+                    <div name="pInfo" id="pInfo" contentEditable><?php echo $pInfo; ?></div>
                   </form><button class="btn btn-primary" id="pinfoBtn" onclick="updatepInfo()">Update</button></p>
                 </div>
                 <div class="about-content-block">
