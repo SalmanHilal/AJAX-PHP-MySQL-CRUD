@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2019 at 01:18 PM
+-- Generation Time: Apr 08, 2019 at 11:56 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -142,19 +142,37 @@ CREATE TABLE `usersinfo` (
   `img` blob,
   `imgpath` varchar(255) DEFAULT NULL,
   `isonline` varchar(30) DEFAULT NULL,
-  `coverPic` varchar(255) DEFAULT NULL
+  `coverPic` varchar(255) DEFAULT NULL,
+  `profession` varchar(255) DEFAULT NULL,
+  `personelinfo` varchar(900) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usersinfo`
 --
 
-INSERT INTO `usersinfo` (`id`, `userName`, `email`, `phone`, `pass`, `img`, `imgpath`, `isonline`, `coverPic`) VALUES
-(139, 'John', 'john.tim@gmail.com', '13333555555', 'abc123', NULL, 'uploads/john.tim-22-1.png', 'true', 'uploads/john.tim-36-scissor-04.png'),
-(140, 'Colin', 'colin@gmail.com', '9876543211', 'abc123', NULL, 'uploads/5.png', 'false', NULL),
-(141, 'James', 'james@gmail.com', '456789123', 'abc123', NULL, 'uploads/4.png', NULL, NULL),
-(156, 'Saami', 'saamiibrahim@gmail.com', '1234567891', 'Saami1@', NULL, 'uploads/Saami-U896.jpg', 'true', NULL),
-(157, 'KeepOnline', 'keep@online.com', '12346654644554', 'aA1@', NULL, 'uploads/KeepOnline-download.png', 'true', NULL);
+INSERT INTO `usersinfo` (`id`, `userName`, `email`, `phone`, `pass`, `img`, `imgpath`, `isonline`, `coverPic`, `profession`, `personelinfo`) VALUES
+(139, 'John', 'john.tim@gmail.com', '13333555555', 'abc123', NULL, 'uploads/john.tim-22-1.png', 'true', 'uploads/john.tim-36-scissor-04.png', 'Mobile App Developer', NULL),
+(140, 'Colin', 'colin@gmail.com', '9876543211', 'abc123', NULL, 'uploads/colin-601-5.png', 'false', 'uploads/colin-29-scissor-04.png', 'Web developer', 'lorem ipsim a'),
+(141, 'James', 'james@gmail.com', '456789123', 'abc123', NULL, 'uploads/4.png', 'true', NULL, 'Enter your profession here.', '                      \n                    '),
+(156, 'Saami', 'saamiibrahim@gmail.com', '1234567891', 'Saami1@', NULL, 'uploads/saamiibrahim-191-Screenshot (1).png', 'true', 'uploads/saamiibrahim-cover-27-Screenshot (4).png', 'Freelancer', '                      sadasd\n                    '),
+(157, 'KeepOnline', 'keep@online.com', '12346654644554', 'aA1@', NULL, 'uploads/KeepOnline-download.png', 'true', NULL, NULL, NULL),
+(158, 'Muslimhassan', 'muslim110@gmail.com', '03422167329', 'john123', NULL, 'uploads/Muslimhassan-d334b965-e735-4119-9b96-de6164240d78.jpg', 'true', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `userswork`
+--
+
+CREATE TABLE `userswork` (
+  `id` int(9) UNSIGNED NOT NULL,
+  `useremail` varchar(225) NOT NULL,
+  `org` varchar(225) NOT NULL,
+  `designation` varchar(225) NOT NULL,
+  `fromdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `todate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -191,6 +209,12 @@ ALTER TABLE `usersinfo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `userswork`
+--
+ALTER TABLE `userswork`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -222,7 +246,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `usersinfo`
 --
 ALTER TABLE `usersinfo`
-  MODIFY `id` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
+  MODIFY `id` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+
+--
+-- AUTO_INCREMENT for table `userswork`
+--
+ALTER TABLE `userswork`
+  MODIFY `id` int(9) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
