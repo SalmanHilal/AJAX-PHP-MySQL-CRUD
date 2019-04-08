@@ -17,8 +17,8 @@ input[type=file]{display:inline-block}
 .profile-info:hover #changeimgForm{visibility:visible}
 .about_content{display:none}
 #prof{width:100%;text-align:center;border:none;outline:none;}
-#pInfo{width:100%;border:none;outline:none;min-height:50px;height:fit-content!important; }
-#pInfo {
+.editable{width:100%;border:none;outline:none;min-height:50px;height:fit-content!important; }
+.editable{
     padding: 5px;
     min-height: 5em;
     overflow: auto;

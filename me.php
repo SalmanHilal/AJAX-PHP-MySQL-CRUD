@@ -36,7 +36,7 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
     
     <!--Google Font-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--Favicon-->
     <link rel="shortcut icon" type="image/png" href="<?php echo $imgpath; ?>">
   </head>
@@ -398,31 +398,19 @@ $q = "SELECT * FROM usersinfo WHERE email = '$uemail'";
                 <div class="about-content-block">
                   <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>Personal Information</h4>
                   <p>                    <form>
-                    <div name="pInfo" id="pInfo" contentEditable><?php echo $pInfo; ?></div>
+                    <div id="pInfo" class="editable" contentEditable><?php echo $pInfo; ?></div>
                   </form><button class="btn btn-primary" id="pinfoBtn" onclick="updatepInfo()">Update</button></p>
                 </div>
                 <div class="about-content-block">
                   <h4 class="grey"><i class="ion-ios-briefcase-outline icon-in-title"></i>Work Experiences</h4>
                   <div class="organization">
-                    <img src="images/envato.png" alt="" class="pull-left img-org">
+                  	<i class="fa fa-pencil-square-o pull-right"></i>
+                    <img src="images/job.png" alt="" class="pull-left img-org">
                     <div class="work-info">
-                      <h5>Envato</h5>
-                      <p>Seller - <span class="text-grey">1 February 2013 to present</span></p>
+                      <h5 contentEditable>Envato</h5>
+                      <p><b contentEditable>Seller  </b>- <span class="text-grey">1 February 2013 to present</span></p>
                     </div>
-                  </div>
-                  <div class="organization">
-                    <img src="images/envato.png" alt="" class="pull-left img-org">
-                    <div class="work-info">
-                      <h5>Envato</h5>
-                      <p>Seller - <span class="text-grey">1 February 2013 to present</span></p>
-                    </div>
-                  </div>
-                  <div class="organization">
-                    <img src="images/envato.png" alt="" class="pull-left img-org">
-                    <div class="work-info">
-                      <h5>Envato</h5>
-                      <p>Seller - <span class="text-grey">1 February 2013 to present</span></p>
-                    </div>
+                    <button class="btn btn-primary" id="pinfoBtn" onclick="updatework()">Update</button>
                   </div>
                 </div>
                 <div class="about-content-block">
